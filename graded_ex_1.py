@@ -57,8 +57,8 @@ def display_cart(cart):
     for item, price, quantity in cart:
         cost = price * quantity
         total_cost += cost
-        print(f"{item} - ${price:.2f} x {quantity} = ${cost:.2f}")
-    print(f"\nTotal cost: ${total_cost:.2f}")
+        print(f"{item} - ${price} x {quantity} = ${cost}")
+    print(f"\nTotal cost: ${total_cost}")
     return total_cost
 
 def generate_receipt(name, email, cart, total_cost, address):
@@ -85,7 +85,6 @@ def main():
     cart = []
     print("Welcome to the online shopping store!")
     
-    # Ask for user details and validate
     name = input("Enter your name (First Last): ")
     while not validate_name(name):
         print("Invalid name format. Please provide your first and last name.")
@@ -96,13 +95,11 @@ def main():
         print("Invalid email format. Please provide a valid email.")
         email = input("Enter your email: ")
 
-    # Show categories
     display_categories()
     category_choice = int(input("Select a category by number: "))
     category_name = list(products.keys())[category_choice - 1]
     selected_category = products[category_name]
     
-    # Sort products if needed
     sort_order = input("Sort products by price? (1 for ascending, 2 for descending, or press Enter to skip): ")
     if sort_order:
         sorted_products = display_sorted_products(selected_category, sort_order)
