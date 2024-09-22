@@ -32,37 +32,68 @@ products = {
 
 
 def display_sorted_products(products_list, sort_order):
-    pass
-
+    if sort_order.lower() == "1" or sort_order == "asc":
+        sorted_products = sorted(products_list, key=lambda x: x['price'], reverse=False)
+    elif sort_order.lower() == "2" or sort_order == "desc":
+        sorted_products = sorted(products_list, key=lambda x: x['price'], reverse=True)
+    else:
+        print("invailid value")
+    return sorted_products
 
 def display_products(products_list):
-    pass
+    for i, (product, price) in enumerate(products_list, start=1):
+        print(f"{i}. {product} - ${price}")
 
 
 def display_categories():
-    pass
+    print("Available Categories:")   
+    for i, category in enumerate(products.keys(), start=1):
+        print(f"{i}. {category}")
 
 
 def add_to_cart(cart, product, quantity):
-    pass
+    cart.append((product[
+0], product[1], quantity))
 
 def display_cart(cart):
-    pass
+    total_cost = 0
+    for item, price, quantity in cart:
+            cost = price * quantity
+            total_cost += cost
+            print(f"{item} - ${price} x {quantity} = ${cost}")
+    
+   
+            print(f"Total cost: ${total_cost}")
+            return total_cost
 
 
 def generate_receipt(name, email, cart, total_cost, address):
-    pass
+    print("\n--- Receipt ---")
+    print(f"Customer: {name}")
+    print(f"Email: {email}")
+    print("\nItems Purchased:")
+for item, price, quantity in cart:    
+     print(f"{quantity} x {item} - ${price} = ${price * quantity}")
+     print(f"\nTotal: ${total_cost}")
+     print(f"Delivery Address: {address}")
+     print("\nYour items will be delivered in 3 days.")
+     print("Payment will be accepted upon delivery.")
+     print("-----------------------------\n")
+   
+
 
 
 def validate_name(name):
-    pass
+     parts = name.split()
+     return len(parts) == 2 and all(part.isalpha() for part in parts)
 
 def validate_email(email):
-    pass
+     return "@" in email
 
 
 def main():
-    pass
+    cart = []
+    print("Welcome to the online shopping store!")
     
 
 """ The following block makes sure that the main() function is called when the program is run. 
